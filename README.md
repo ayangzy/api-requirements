@@ -1,3 +1,115 @@
+## Overview 
+
+This project is written with the PHP Laravel (v9.19) Framework.
+## Installation & Usage
+<hr/>
+
+### Downloading the Project
+This framework requires PHP 8.0 and it uses mysql database
+.  
+You can simply clone the repository `` api-requirements`` like below on your git bash
+
+```bash
+https://github.com/ayangzy/api-requirements.git
+```
+After cloning the project, please run this command on the project directory
+```
+composer install
+```
+### Configure local Environment
+To run the application you must configure the ```.env``` environment file with your database details. Use the following commmand to create .env file. 
+```
+cp .env.example .env
+
+```
+
+Once you run the above command, please configure your database in the .env file like so
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=xxxxxxx (Your  db name)
+DB_USERNAME=root
+DB_PASSWORD=xxxxx (Your db password if any)
+```
+### Generating app key
+Run the following commands on the project directory to generate application key
+```
+php artisan key:generate
+
+```
+After the app key is generated, Run the following command at this stage to run database migrations
+```
+php artisan migrate
+```
+
+## Seeding DB
+Once your database is correctly set up, you can seed your database by running
+```
+php artisan db:seed
+```
+If you are using local, serve your application on
+```
+php artisan serve
+```
+
+## Running with  Docker
+To run this application on docker container, run the following command on the project directory
+```
+docker-compose build
+```
+Wait for the application's image to build completely on docker then run
+```
+docker-compose up
+```
+## Important note: 
+Make sure your database set up look like this if you are using docker
+```
+DB_CONNECTION=mysql
+DB_HOST=product_db
+DB_PORT=3306
+DB_DATABASE=product_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+Next exec inside the container like below
+```
+docker exec -it product_api bash
+```
+
+Run migrations and seeders
+```
+php artisan migrate --seed
+```
+if you are using docker your application should be live on
+```
+http://localhost:8001
+```
+
+## API Call
+To get all products
+```
+http://localhost:{YOUR_APP_PORT}/api/products
+```
+- To Filter product by category pass ?category={parameter name} as query parameter. see example below
+```
+http://localhost:{YOUR_APP_PORT}/api/products?category=insurance
+```
+## Testing
+To test, Run this command to run test cases
+```
+ php artisan test
+```
+
+## Security
+
+If you discover any security related issues, please email ayangefelix8@gmail.com instead of using the issue tracker.
+
+## Credits
+
+- [Felix Ayange](https://github.com/ayangzy)
+
 # api-requirements
 
 ## Description
